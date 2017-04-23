@@ -4,4 +4,3 @@ typings
 /app/**/*.map
 .vscode/
 .DS_Store
-readme.MD
