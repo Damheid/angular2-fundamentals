@@ -21,11 +21,11 @@ import { Error404Component } from "./errors/index";
 import { EventService } from './events/shared/event.service';
 import { ToastrService } from "./common/toastr.service";
 import { EventsListResolver } from "./events/events-list-resolver.service";
+import { AuthService } from "./user/auth.service";
 
 // Router
 import { appRoutes } from "./routers";
 import { EventRouteActivator } from "./events/event-details/event-route-activator.service";
-
 
 @NgModule({
 	imports: [
@@ -49,7 +49,8 @@ import { EventRouteActivator } from "./events/event-details/event-route-activato
 		{
 			provide: 'canDeactivateCreateEvent',
 			useValue: checkDirtyState
-		}
+		},
+		AuthService
 	],
 	bootstrap: [EventsAppComponent]
 })
