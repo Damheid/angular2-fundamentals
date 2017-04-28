@@ -11,7 +11,8 @@ import {
 	EventThumbnailComponent,
 	EventDetailsComponent,
 	CreateEventComponent,
-	CreateSessionComponent
+	CreateSessionComponent,
+	SessionListComponent
 } from './events/index';
 
 import { NavbarComponent } from './nav/index';
@@ -45,7 +46,8 @@ import { EventRouteActivator } from "./events/event-details/event-route-activato
 		EventDetailsComponent,
 		CreateEventComponent,
 		Error404Component,
-		CreateSessionComponent
+		CreateSessionComponent,
+		SessionListComponent
 	],
 	providers: [
 		EventService,
