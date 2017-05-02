@@ -29,6 +29,7 @@ import { AuthService } from "./user/auth.service";
 // Router
 import { appRoutes } from "./routers";
 import { EventRouteActivator } from "./events/event-details/event-route-activator.service";
+import { CollapsibleWellComponent } from "./common/collapsible-well.component";
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { EventRouteActivator } from "./events/event-details/event-route-activato
 		CreateEventComponent,
 		Error404Component,
 		CreateSessionComponent,
-		SessionListComponent
+		SessionListComponent,
+		CollapsibleWellComponent
 	],
 	providers: [
 		EventService,
