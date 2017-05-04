@@ -23,7 +23,7 @@ import { Error404Component } from "./errors/index";
 
 // Services
 import { EventService } from './events/shared/event.service';
-import { ToastrService } from "./common/toastr.service";
+import { TOASTR_TOKEN, Toastr } from "./common/toastr.service";
 import { EventsListResolver } from "./events/events-list-resolver.service";
 import { AuthService } from "./user/auth.service";
 
@@ -32,6 +32,7 @@ import { appRoutes } from "./routers";
 import { EventRouteActivator } from "./events/event-details/event-route-activator.service";
 import { CollapsibleWellComponent } from "./common/collapsible-well.component";
 
+declare let toastr: Toastr;
 
 @NgModule({
 	imports: [
@@ -55,7 +56,7 @@ import { CollapsibleWellComponent } from "./common/collapsible-well.component";
 	],
 	providers: [
 		EventService,
-		ToastrService,
+		{ provide: TOASTR_TOKEN, useValue: toastr },
 		EventRouteActivator,
 		EventsListResolver,
 		{
