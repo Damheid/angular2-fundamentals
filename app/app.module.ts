@@ -13,7 +13,10 @@ import {
 	CreateEventComponent,
 	CreateSessionComponent,
 	SessionListComponent,
-	DurationPipe
+	DurationPipe,
+	UpvoteComponent,
+	VoterService,
+	LocationValidator
 } from './events/index';
 
 import { NavbarComponent } from './nav/index';
@@ -62,7 +65,9 @@ declare let jQuery: Object;
 		CollapsibleWellComponent,
 		DurationPipe,
 		SimpleModalComponent,
-		ModalTriggerDirective
+		ModalTriggerDirective,
+		UpvoteComponent,
+		LocationValidator
 	],
 	providers: [
 		EventService,
@@ -74,7 +79,8 @@ declare let jQuery: Object;
 			provide: 'canDeactivateCreateEvent',
 			useValue: checkDirtyState
 		},
-		AuthService
+		AuthService,
+		VoterService
 	],
 	bootstrap: [EventsAppComponent]
 })
