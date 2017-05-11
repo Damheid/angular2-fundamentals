@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ISession } from "../index";
 import { Http, Response, Headers, RequestOptions } from "@angular/http";
-import { Observable } from "rxjs/RX";
+import { Observable } from "rxjs/Rx";
 
 @Injectable()
 export class VoterService {
@@ -25,7 +25,7 @@ export class VoterService {
 		let url = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`;
 
 		return this.http.post(url, JSON.stringify({}), options)
-			.map((response: Response) => { return response.json(); })
+			//.map((response: Response) => { return response.json(); })
 			.catch(this.handleError)
 			.subscribe();
 	}
