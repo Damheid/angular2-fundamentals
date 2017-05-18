@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Validators, FormControl, FormGroup } from "@angular/forms";
-import { Router } from "@angular/router";
-import { ISession, restrictedWords } from "../shared/index";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ISession, restrictedWords } from '../shared/index';
 
 @Component({
 	selector: 'create-session',
@@ -14,7 +14,7 @@ import { ISession, restrictedWords } from "../shared/index";
 	.error ::-moz-placeholder {color: #999;}
 	.error :moz-placeholder {color: #999;}
 	.error :ms-input-placeholder {color: #999;}
-	`]
+	`],
 })
 export class CreateSessionComponent implements OnInit {
 	@Output() saveNewSession = new EventEmitter();
@@ -40,19 +40,19 @@ export class CreateSessionComponent implements OnInit {
 			presenter: this.presenter,
 			duration: this.duration,
 			level: this.level,
-			abstract: this.abstract
-		})
+			abstract: this.abstract,
+		});
 	}
 
 	saveSession(formValues) {
-		let session: ISession = {
+		const session: ISession = {
 			id: undefined,
 			name: formValues.name,
 			duration: +formValues.duration,
 			level: formValues.level,
 			presenter: formValues.presenter,
 			abstract: formValues.abstract,
-			voters: []
+			voters: [],
 		};
 
 		this.saveNewSession.emit(session);

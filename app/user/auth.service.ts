@@ -1,70 +1,68 @@
 import { Injectable } from '@angular/core';
-import { IUser } from "./user.model";
-import { Http, RequestOptions, Headers } from "@angular/http";
-import { Observable } from "rxjs/Rx";
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { IUser } from './user.model';
 
 @Injectable()
 export class AuthService {
 
+	public currentUser: IUser;
 	constructor(private http: Http) { }
 
-	currentUser: IUser;
+	public loginUser(userName: string, password: string) {
+		const headers = new Headers({ 'Content-Type': 'application/json' });
+		const options = new RequestOptions({ headers });
 
-	loginUser(userName: string, password: string) {
-		let headers = new Headers({ 'Content-Type': 'application/json' });
-		let options = new RequestOptions({ headers: headers });
-
-		let loginInfo = { username: userName, password: password };
+		const loginInfo = { username: userName, password };
 
 		return this.http.post('/api/login', JSON.stringify(loginInfo), options)
-			.do(resp => {
+			.do((resp) => {
 				if (resp) {
-					this.currentUser = <IUser>resp.json().user;
+					this.currentUser = resp.json().user as IUser;
 				}
 			})
-			.catch(error => {
+			.catch((error) => {
 				return Observable.of(false);
-			})
-	};
+			});
+	}
 
-	isAuthenticated() {
+	public isAuthenticated() {
 		return !!this.currentUser;
-	};
+	}
 
-	checkAuthenticationStatus() {
+	public updateCurrentUser(firstName: string, lastName: string) {
+		this.currentUser.firstName = firstName;
+		this.currentUser.lastName = lastName;
+
+		const headers = new Headers({ 'Content-Type': 'application/json' });
+		const options = new RequestOptions({ headers });
+
+		return this.http.put(`/api/users/${this.currentUser.id}`, JSON.stringify(this.currentUser), options);
+	}
+
+	public logout() {
+		this.currentUser = undefined;
+
+		const headers = new Headers({ 'Content-Type': 'application/json' });
+		const options = new RequestOptions({ headers });
+
+		return this.http.post('/api/logout', JSON.stringify({}), options);
+	}
+
+	private checkAuthenticationStatus() {
 		return this.http.get('/api/currentIdentity')
 			.map((response: any) => {
 				if (response._body) {
-					return response.json()
+					return response.json();
 				} else {
-					return {}
+					return {};
 				}
 			})
-			.do(currentUser => {
+			.do((currentUser) => {
 				if (!!currentUser.userName) {
 					this.currentUser = currentUser;
 				}
 			})
 			.subscribe();
-
-	};
-
-	updateCurrentUser(firstName: string, lastName: string) {
-		this.currentUser.firstName = firstName;
-		this.currentUser.lastName = lastName;
-
-		let headers = new Headers({ 'Content-Type': 'application/json' });
-		let options = new RequestOptions({ headers: headers });
-
-		return this.http.put(`/api/users/${this.currentUser.id}`, JSON.stringify(this.currentUser), options);
-	};
-
-	logout() {
-		this.currentUser = undefined;
-
-		let headers = new Headers({ 'Content-Type': 'application/json' });
-		let options = new RequestOptions({ headers: headers });
-
-		return this.http.post('/api/logout', JSON.stringify({}), options);
 	}
 }

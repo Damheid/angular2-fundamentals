@@ -1,12 +1,12 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { SessionListComponent } from "./session-list.component";
-import { VoterService } from "./voter.service";
-import { AuthService } from "../../user/auth.service";
-import { UpvoteComponent } from "./upvote.component";
-import { DurationPipe } from "../index";
-import { CollapsibleWellComponent } from "../../common/index";
+import { CollapsibleWellComponent } from '../../common/index';
+import { AuthService } from '../../user/auth.service';
+import { DurationPipe } from '../index';
+import { SessionListComponent } from './session-list.component';
+import { UpvoteComponent } from './upvote.component';
+import { VoterService } from './voter.service';
 
 describe('SessionListComponent', () => {
 	let fixture: ComponentFixture<SessionListComponent>,
@@ -15,12 +15,12 @@ describe('SessionListComponent', () => {
 		debugEl: DebugElement;
 
 	beforeEach(async(() => {
-		let mockAuthService = {
+		const mockAuthService = {
 			isAuthenticated: () => true,
-			currentUser: { userName: 'Adam' }
+			currentUser: { userName: 'Adam' },
 		};
-		let mockVoterService = {
-			userHasVoted: () => true
+		const mockVoterService = {
+			userHasVoted: () => true,
 		};
 
 		TestBed.configureTestingModule({
@@ -33,11 +33,11 @@ describe('SessionListComponent', () => {
 			],
 			providers: [
 				{ provide: AuthService, useValue: mockAuthService },
-				{ provide: VoterService, useValue: mockVoterService }
+				{ provide: VoterService, useValue: mockVoterService },
 			],
 			schemas: [
-				NO_ERRORS_SCHEMA
-			]
+				NO_ERRORS_SCHEMA,
+			],
 		}).compileComponents();
 	}));
 
@@ -60,6 +60,6 @@ describe('SessionListComponent', () => {
 
 			//expect(element.querySelector('[well-title]').textContent).toContain('Session 1');
 			expect(debugEl.query(By.css('[well-title]')).nativeElement.textContent).toContain('Session 1');
-		})
-	})
-})
+		});
+	});
+});

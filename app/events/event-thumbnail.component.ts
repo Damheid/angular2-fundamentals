@@ -1,8 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IEvent } from "./index";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IEvent } from './index';
 
 @Component({
 	selector: 'event-thumbnail',
+	styles: [`
+		.thumbnail { min-height: 210px; }
+		.pad-left { margin-left: 10px; }
+		.well div { color: #bbb; }
+	`],
 	template: `
 	<div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
 		<h2>{{event?.name | uppercase}}</h2>
@@ -23,23 +28,20 @@ import { IEvent } from "./index";
 		</div>
 	</div>
 	`,
-	styles: [`
-		.thumbnail { min-height: 210px; }
-		.pad-left { margin-left: 10px; }
-		.well div { color: #bbb; }
-	`]
 })
 export class EventThumbnailComponent implements OnInit {
 	@Input() event: IEvent;
 
+	// tslint:disable-next-line:no-empty
 	constructor() { }
 
+	// tslint:disable-next-line:no-empty
 	ngOnInit() { }
 
 	getStartTimeStyle(): any {
 		if (this.event && this.event.time === '8:00 am') {
-			return { color: '#003300', 'font-weight': 'bold' };
+			return { 'color': '#003300', 'font-weight': 'bold' };
 		}
-		return {}
+		return {};
 	}
 }

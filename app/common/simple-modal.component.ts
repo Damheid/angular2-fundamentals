@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, Inject } from '@angular/core';
-import { JQ_TOKEN } from "./index";
+import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { JQ_TOKEN } from './index';
 
 @Component({
 	selector: 'simple-modal',
@@ -20,7 +20,7 @@ import { JQ_TOKEN } from "./index";
 	`,
 	styles: [`
 		.modal-body { height: 250px; overflow-y: scroll; }
-	`]
+	`],
 })
 export class SimpleModalComponent implements OnInit {
 	@Input() title: string;
@@ -33,7 +33,7 @@ export class SimpleModalComponent implements OnInit {
 	ngOnInit() { }
 
 	closeModal() {
-		if (this.closeOnBodyClick.toLocaleLowerCase() === "true")
+		if (this.closeOnBodyClick.toLocaleLowerCase() === 'true')
 			this.$(this.containerEL.nativeElement).modal('hide');
 	}
 }

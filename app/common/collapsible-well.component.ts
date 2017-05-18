@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
 	selector: 'collapsible-well',
@@ -9,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 		</h4>
 		<ng-content *ngIf="visible" select="[well-body]"></ng-content>
 	</div>
-	`
+	`,
 })
 export class CollapsibleWellComponent implements OnInit {
 	visible: boolean = true;

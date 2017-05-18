@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from "../shared/event.service";
 import { ActivatedRoute, Params } from '@angular/router';
-import { IEvent, ISession } from "../index";
+import { IEvent, ISession } from '../index';
+import { EventService } from '../shared/event.service';
 
 @Component({
 	templateUrl: 'app/events/event-details/event-details.component.html',
@@ -9,7 +9,7 @@ import { IEvent, ISession } from "../index";
 		.container { padding-left: 20px; pading-right: 20px; }
 		.event-image { height: 100px; }
 		a {cursor: pointer;}
-	`]
+	`],
 })
 export class EventDetailsComponent implements OnInit {
 	addMode: boolean;
@@ -21,7 +21,7 @@ export class EventDetailsComponent implements OnInit {
 
 	ngOnInit() {
 		this.route.data.forEach((data) => {
-			this.event = data['event'];
+			this.event = data.event;
 			this.addMode = false;
 		});
 	}
@@ -31,7 +31,7 @@ export class EventDetailsComponent implements OnInit {
 	}
 
 	saveNewSession(session: ISession) {
-		const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id));
+		const nextId = Math.max.apply(null, this.event.sessions.map((s) => s.id));
 		session.id = nextId + 1;
 		this.event.sessions.push(session);
 		this.eventService.saveEvent(this.event).subscribe();

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
 	selector: 'upvote',
@@ -14,7 +14,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 			</div>
 		</div>
 	</div>
-	`
+	`,
 })
 export class UpvoteComponent implements OnInit {
 	@Input() count: number;
@@ -24,8 +24,10 @@ export class UpvoteComponent implements OnInit {
 	@Output() vote = new EventEmitter();
 	iconColor: string;
 
+	// tslint:disable-next-line:no-empty
 	constructor() { }
 
+	// tslint:disable-next-line:no-empty
 	ngOnInit() { }
 
 	onClick() {
